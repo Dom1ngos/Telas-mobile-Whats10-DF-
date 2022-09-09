@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./assets/css/materialize.min.css">
+    <link rel="stylesheet" href="./www/assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/materialize.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            
+
+            $( "#btnEntrar" ).click(function() {
+                
+                var Email = $( "#inputEmailLogin" ).val();
+                var Senha = $( "#inputSenhaLogin" ).val();
+
+                console.log(Email + ' - ' + Senha);
+
+                $.ajax({
+                    url: "http://localhost:8888/guiadolago/server/index.php",
+                    type: "POST",
+                    data : {
+                        'rota' : 'login',
+                        Email,
+                        Senha
+                    }
+                }).done(function(retorno) {
+
+                    console.log(retorno);
+                    if(retorno == 'logado'){
+                        alert('Bem vindo');
+
+                        location.href = 'home.html';
+                    }else{
+                        alert('Erro ao logar');
+                    }
+
+                }).fail(function(){
+                    alert('Erro ao conecar com servidor');
+                });
+            
+
+            });
+
+
+            $( "#btnCadastrese" ).click(function() {
+                
+                var Nome = $( "#inputNomeCadastro" ).val();
+                var Email = $( "#inputEmailCadastro" ).val();
+                var Senha = $( "#inputSenhaCadastro" ).val();
+
+                //console.log(Email + ' - ' + Senha);
+
+                $.ajax({
+                    url: "http://localhost:8888/guiadolago/server/index.php",
+                    type: "POST",
+                    data : {
+                        'rota' : 'cadastro',
+                        Nome,
+                        Email,
+                        Senha
+                    }
+                }).done(function(retorno) {
+
+                    console.log(retorno);
+                    if(retorno == 'cadastrado'){
+                        alert('Bem vindo');
+
+                        location.href = 'index.html';
+                    }else{
+                        alert('Erro ao cadastrar-se');
+                    }
+
+                }).fail(function(){
+                    alert('Erro ao conecar com servidor');
+                });
+            });
+
+
+            $('.labelLogin').click(function(){
+                $('#formLogin').fadeIn();
+                $('#formCadastre').fadeOut();
+            });
+            $('.labelCadastre').click(function(){
+                $('#formCadastre').fadeIn();
+                $('#formLogin').fadeOut();
+            });
+
+            $('.labelCadastre').click(function(){
+                $('#formCadastre').fadeIn();
+                $('#formLogin').fadeOut();
+            });
+
+            $('.labelVoltar').click(function(){
+                $('#formLogin').fadeIn();
+                $('#formCadastre').fadeOut();
+            });
+
+        });
+    </script>
+
+
+<body>
+        
+
+        <div class="container" id="Acesso">
+            <div class="row">
+             <div class="col s12 acesso" > 
+
+        </div>
+
+
+
+        <div id="login" class="col s12">
+            <div class="col s12">&nbsp;</div>
+
+            <img src="./assets/img/logow.png" />
+
+            <div style="clear: both;"></div>
+
+            <div class="col s12">&nbsp;</div>
+            <div class="col s12">&nbsp;</div>
+            <div class="col s12">&nbsp;</div>
+            <div class="col s12">&nbsp;</div>
+            <div class="col s12">&nbsp;</div>
+
+            <div class="col s6 center-align labelLogin" id="entrar">Entrar</div>
+            <div class="col s6 center-align labelCadastre" id="cadastre-se">Cadastre-se</div>
+
+            <div id="formLogin">
+
+                <div id="emailLogin" class="input-field formCadastroLogin col s12">
+                    <input id="inputEmailLogin" type="text" class="validate">
+                    <label for="inputEmailLogin">Email</label>
+                </div>
+
+                <div id="senhaLogin" class="input-field formCadastroLogin col s12">
+                    <input id="inputSenhaLogin" type="text" class="validate">
+                    <label for="inputSenhaLogin">Senha</label>
+                </div>
+
+                <div class="col s12">&nbsp;</div>
+                <a id="btnEntrar" class="waves-effect waves-light btn light-green accent-4 col s12">Entrar</a>
+                
+                <div class="col s12">&nbsp;</div>
+                <div class="col s12">&nbsp;</div>
+                <div class="col s12 center-align labelRecuperarSenha">Esqueci a senha</div>
+
+
+                </div>
+
+             <div id="formCadastre" style="display: none;">
+
+                <div id="formCadastre">
+
+                    <div id="nomeCadastro" class="input-field formCadastroLogin col s12">
+                        <input id="inputNomeCadastro" type="text" class="validate">
+                        <label for="inputNomeCadastro">Nome</label>
+                    </div>
+
+                    <div id="emailCadastro" class="input-field formCadastroLogin col s12">
+                        <input id="inputEmailCadastro" type="text" class="validate">
+                        <label for="inputEmailCadastro">Email</label>
+                    </div>
+
+                    <div id="senhaCadastro" class="input-field formCadastroLogin col s12">
+                        <input id="inputSenhaCadastro" type="text" class="validate">
+                        <label for="inputSenhaCadastro">Senha</label>
+                    </div>
+
+                    <div id="telefoneCadastro" class="input-field formCadastroLogin col s12">
+                        <input id="inputTelefoneCadastro" type="text" class="validate">
+                        <label for="inputTelefoneCadastro">Telefone</label>
+                    </div>
+
+                    <a id="btnCadastrese" class="waves-effect waves-light btn light-green accent-4 col s12">Cadastre-se</a>
+                    
+                    <div class="col s12">&nbsp;</div>
+                    <div class="col s12 center-align labelVoltar">Voltar</div>
+    
+                    </div>
+                </div>    
+
+        </div>        
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./assets/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/materialize.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            
+
+            $( "#arrow" ).click(function() {
+                
+                var Email = $( "#inputEmailLogin" ).val();
+                var Senha = $( "#inputSenhaLogin" ).val();
+
+                console.log(Email + ' - ' + Senha);
+
+                $.ajax({
+                    url: " ",
+                    type: "POST",
+                    data : {
+                        'rota' : 'perfil',
+                        Email,
+                        Senha
+                    }
+                }).done(function(retorno) {
+
+                    console.log(retorno);
+                    if(retorno == 'logado'){
+                        alert('Bem vindo');
+
+                        location.href = 'home.html';
+                    }else{
+                        alert('Erro ao logar');
+                    }
+
+                }).fail(function(){
+                    alert('Erro ao conecar com servidor');
+                });
+            
+
+            });
+            $('.arrow').click(function(){
+                $('#formLogin').fadeIn();
+                $('#formCadastre').fadeOut();
+            });
+        });
+
+    </script>
+
+    <body>
+    
+        <div class="container" id="Perfil">
+            <div class="row">
+             <div class="col s12 perfil" > 
+
+        </div>
+
+        <i class="fa fa-arrow-left" id="arrow"> </i>
+        
+    <div id="login" class="col s12">
+
+            <div class="col s12">&nbsp;</div>
+
+            <img src="./assets/img/Vector.png" />
+
+            <div style="clear: both;"></div>
+
+        <div id="formTrocarFoto"> 
+                <a id="btnTrocaFoto" class="waves-effect waves-light btn grey col s12" >Trocar foto</a>
+            
+
+        <div class="col s12">&nbsp;</div>
+        <div class="col s12">&nbsp;</div>
+
+            <div id="formPerfil" class="col s12">
+
+                <div class="col s12">&nbsp;</div>
+
+                <div id="nomePerfil" class="input-field formCadastroLogin col s12">
+                    <input id="inputNomePerfil" type="text" class="validate">
+                    <label for="inputNomePerfil">Nome</label>
+                </div>
+
+                <div id="nomePerfil" class="input-field formCadastroLogin col s12">
+                    <input id="inputEmailPerfil" type="text" class="validate">
+                    <label for="inputEmailPerfil">E-mail</label>
+                </div>
+
+                <div id="nomePerfil" class="input-field formCadastroLogin col s12">
+                    <input id="inputSenhaPerfil" type="text" class="validate">
+                    <label for="inputSenhaPerfil">Senha</label>
+                </div>
+
+                <div id="nomePerfil" class="input-field formCadastroLogin col s12">
+                    <input id="inputDescricaoPerfil" type="text" class="validate">
+                    <label for="inputDescricaoPerfil">Descrição</label>
+                </div>
+
+                <div id="nomePerfil" class="input-field formCadastroLogin col s12">
+                    <input id="inputCategoriasPerfil" type="text" class="validate">
+                    <label for="inputCategoriasPerfil">Categorias</label>
+                </div>
+
+                <div id="nomePerfil" class="input-field formCadastroLogin col s12">
+                    <input id="inputRedesPerfil" type="text" class="validate">
+                    <label for="inputRedesPerfil">Redes Sociais</label>
+                </div>
+
+                <div class="col s12">&nbsp;</div>
+
+                <a id="btnSalvar" class="waves-effect waves-light btn light-green accent-4 col s12">Salvar</a>
+                
+            </div>
+               
+        </div>    
+    </div> 
+
+
+
+     
+
+
+    </body>
+</html>

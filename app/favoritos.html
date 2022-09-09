@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./assets/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/materialize.min.js"></script>
+
+    <script>
+
+    $('.btnBuscar').click(function () {
+
+        var Busca = $('#BuscaForm').val();
+
+                $.ajax({
+                    url: localStorage.WhatsAppServer,
+                    type: 'POST',
+                    data: {
+                        rota: 'Busca',
+                        Busca
+                    }
+                })
+                .done(function (xhr) {
+                    console.log(xhr);
+                    xhr = JSON.parse(xhr);
+                    if (xhr.status == 's') {
+
+                        if (xhr.Resultado == undefined || xhr.Resultado == null || xhr.Resultado == '') {
+                            $('.recebeResultadoBusca').html('<div class="chip col s12 waves-effect center-align">Nenhum resultado encontrado</div>');
+                            setTimeout(() => {
+                                $('.recebeResultadoBusca').html('<img src="./assets/img/undraw_People_search_re_5rre_1.png" class="col s12" />');
+                            }, 3000);
+                        } else {
+                            functionPerfil(xhr.Resultado, 'recebeResultadoBusca');
+                            var res = '<ul class="collection">';
+                            for (let index = 0; index < Resultado.length; index++) {
+
+                                res += '<li id="' + Resultado[index].Id + '" class="collection-item avatar verPerfil">';
+                                res += '<img src="' + localStorage.WhatsAppServer + '/../avatar/' + Resultado[index].Avatar + '" alt="" class="circle">';
+                                res += '<span class="title">' + Resultado[index].Nome + '</span>';
+                                res += '<p> ' + Resultado[index].Categorias + ' </p>';
+                                res += '<p>';
+                                res += '</p>';
+                                res += '</li>';
+
+                            }
+                            res += '</ul>';
+                            $('.recebeResultadoBusca').html(res);
+                        }
+
+                    }
+                })
+                .fail(function () {
+                    $('.recebeResultadoBusca').html('<div class="chip col s12 waves-effect center-align">Nenhum resultado encontrado</div>');
+                    setTimeout(() => {
+                        $('.recebeResultadoBusca').html('<img src="./assets/img/undraw_People_search_re_5rre_1.png" class="col s12" />');
+                    }, 3000);
+                });
+                });
+
+    </script>
+
+    <body>
+    
+        <div class="container" id="Perfil">
+            <div class="row">
+             <div class="col s12 perfil" > 
+
+        </div>
+
+        <i class="fa fa-bars" id="arrow"> </i>
+        
+        
+    <div id="topo" class="col s12">
+        <div class="col s12">&nbsp;</div>
+
+        <img src="./assets/img/Vector.png" />
+
+    </div> 
+
+
+    <div class="col s12">&nbsp;</div>
+
+    <div id="formBusca" class="col s12">
+        
+        <div id="mid" class="col s12">
+            <div class="col s12">&nbsp;</div>
+            <div class="col s12">&nbsp;</div>
+            <div class="col s12">&nbsp;</div>
+            <div class="col s12">&nbsp;</div>
+            <div class="col s12">&nbsp;</div>
+            <div class="col s12">&nbsp;</div>
+            
+            <img src="./assets/img/busca.png" />
+
+        </div>
+
+    </div>
+
+
+
+     
+
+
+    </body>
+</html>
